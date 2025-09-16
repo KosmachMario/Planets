@@ -54,4 +54,6 @@ export class PlanetsHeaderComponent implements OnInit {
     public setGridView(value: boolean): void {
         this.planetsStateService.isGridView.set(value);
     }
+
+    public onNewPlanetClick(): void {}
 }

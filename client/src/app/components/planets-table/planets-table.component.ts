@@ -1,22 +1,26 @@
-import { DecimalPipe } from '@angular/common';
 import {
+    AfterViewInit,
     ChangeDetectionStrategy,
     Component,
     effect,
     input,
+    ViewChild,
 } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Planet } from '../../models/planet.interface';
+import { MatSort, MatSortModule } from '@angular/material/sort';
 
 @Component({
     selector: 'app-planets-table',
     standalone: true,
-    imports: [MatTableModule, DecimalPipe],
+    imports: [MatTableModule, MatSortModule],
     templateUrl: `./planets-table.component.html`,
     styleUrl: './planets-table.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PlanetsTableComponent {
+export class PlanetsTableComponent implements AfterViewInit {
+    @ViewChild(MatSort) sort!: MatSort;
+
     public planets = input.required<Planet[]>();
 
     public displayedColumns: string[] = [
@@ -33,5 +37,19 @@ export class PlanetsTableComponent {
         effect(() => {
             this.dataSource.data = this.planets();
         });
+    }
+
+    public ngAfterViewInit(): void {
+        this.dataSource.sortingDataAccessor = (item, property) => {
+            switch (property) {
+                case 'distanceFromSun':
+                    return Number(item.distInMillionsKM.fromSun);
+                case 'distanceFromEarth':
+                    return Number(item.distInMillionsKM.fromEarth);
+                default:
+                    return (item as any)[property];
+            }
+        };
+        this.dataSource.sort = this.sort;
     }
 }
