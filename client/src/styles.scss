@@ -1,1 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+@use "styles/colors";
+@use "styles/typography";
+@use "styles/helper";
+@use "styles/components/input";
+
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}

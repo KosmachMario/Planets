@@ -1,0 +1,18 @@
+$background-color: rgba(236, 239, 244, 1);
+$gray-d60: rgba(36, 38, 38, 1);
+$gray-l80: rgba(222, 223, 223, 1);
+$primary-button-color: rgba(1, 31, 73, 1);
+$secondary-button-color: rgba(76, 57, 111, 1);
+
+:root {
+    --title-color: #{$gray-d60};
+    --background-color: #{$background-color};
+    --separator-color: #{$gray-l80};
+}
+
+:root {
+    --mdc-filled-button-container-color-primary: #{$primary-button-color};
+    --mdc-filled-button-container-color-secondary: #{$secondary-button-color};
+
+    --mdc-filled-button-container-shape: 4px;
+}

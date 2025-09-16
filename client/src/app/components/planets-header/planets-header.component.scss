@@ -1,0 +1,48 @@
+@use "../../../styles/mixins" as mixins;
+
+:host {
+    flex: 0 0 auto;
+}
+
+.planets-header {
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &__right-side {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+    }
+}
+
+.planets-title {
+    font-size: var(--title-font-size);
+    font-weight: 700;
+    line-height: 40px;
+    color: var(--title-color);
+    margin: 0;
+}
+
+.toggle-view-buttons {
+    height: 28px;
+    display: flex;
+    gap: 4px;
+
+    mat-icon {
+        @include mixins.mat-icon-size(28px);
+    }
+}
+
+.separator {
+    height: 100%;
+    width: 1px;
+    background-color: var(--separator-color);
+}
+
+.search-field {
+    mat-icon {
+        @include mixins.mat-icon-size(20px);
+    }
+}
