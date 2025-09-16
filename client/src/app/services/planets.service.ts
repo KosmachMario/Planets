@@ -1,5 +1,5 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { effect, Injectable, signal } from '@angular/core';
 import {
     BehaviorSubject,
     catchError,
@@ -16,13 +16,24 @@ import { Planet } from '../models/planet.interface';
 export class PlanetsService {
     private SERVER_DOMAIN = 'http://localhost:3001';
 
-    private _planets = new BehaviorSubject<Planet[]>([]);
+    private _allPlanets = signal<Planet[]>([]);
+
+    private _filteredPlanets = new BehaviorSubject<Planet[]>([]);
     private _loading = new BehaviorSubject<boolean>(false);
 
-    public planets$ = this._planets.asObservable();
+    public planets$ = this._filteredPlanets.asObservable();
     public loading$ = this._loading.asObservable();
 
-    constructor(private http: HttpClient) {}
+    public searchText = signal<string>('');
+
+    constructor(private http: HttpClient) {
+        effect(
+            () => {
+                this.filterPlanets(this.searchText(), this._allPlanets());
+            },
+            { allowSignalWrites: true }
+        );
+    }
 
     public loadPlanets(): void {
         this._loading.next(true);
@@ -36,12 +47,30 @@ export class PlanetsService {
             )
             .subscribe({
                 next: (response) => {
-                    this._planets.next(response);
+                    this._allPlanets.set(response);
                 },
                 error: (err) => {
-                    this._planets.next([]);
+                    this._allPlanets.set([]);
                 },
             });
+    }
+
+    private filterPlanets(term: string, allPlanets: Planet[]): void {
+        if (!term) {
+            this._filteredPlanets.next(allPlanets);
+            return;
+        }
+
+        const termLower = term.toLowerCase();
+
+        const filtered = allPlanets.filter(
+            (p) =>
+                p.planetName.toLowerCase().includes(termLower) ||
+                p.description.toLowerCase().includes(termLower) ||
+                p.planetColor.toLowerCase().includes(termLower)
+        );
+
+        this._filteredPlanets.next(filtered);
     }
 
     private handleError(error: HttpErrorResponse): Observable<any> {

@@ -1,0 +1,45 @@
+.planet-cell {
+    display: grid;
+    grid-template-columns: 40px 1fr; /* avatar fixed, text takes rest */
+    align-items: center;
+    gap: 12px;
+
+    .planet-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    .planet-info {
+        overflow: hidden;
+
+        .planet-name {
+            font-weight: 500;
+        }
+
+        .planet-description {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: gray;
+            font-size: 12px;
+        }
+    }
+}
+
+table.mat-table {
+    width: 100%;
+    table-layout: fixed; /* enforce column widths */
+}
+
+.mat-column-planetName {
+    width: 30%; /* smaller first column */
+}
+
+.mat-column-planetColor,
+.mat-column-planetRadiusKM,
+.mat-column-distanceFromSun,
+.mat-column-distanceFromEarth {
+    width: 17.5%; /* remaining columns share 70% */
+}

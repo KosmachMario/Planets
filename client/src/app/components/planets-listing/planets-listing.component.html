@@ -1,0 +1,7 @@
+<div class="planets-listing-container">
+    @if (planets()) { @if (isGridView()) {
+    <app-planets-grid [planets]="planets()" />
+    }@else {
+    <app-planets-table [planets]="planets()" />
+    } }
+</div>

@@ -32,6 +32,15 @@
 
     mat-icon {
         @include mixins.mat-icon-size(28px);
+        cursor: pointer;
+
+        &.active {
+            ::ng-deep path {
+                fill: rgba(18, 81, 105, 1);
+            }
+            background-color: rgba(208, 220, 225, 1);
+            border-radius: 4px;
+        }
     }
 }
 
