@@ -1,0 +1,22 @@
+button.mdc-button {
+    min-width: 120px;
+
+    &.primary {
+        --mdc-filled-button-container-color: var(
+            --mdc-filled-button-container-color-primary
+        );
+    }
+
+    &.secondary {
+        --mdc-filled-button-container-color: var(
+            --mdc-filled-button-container-color-secondary
+        );
+    }
+
+    &.tertiary {
+        --mdc-filled-button-container-color: var(
+            --mdc-filled-button-container-color-tertiary
+        );
+        --mdc-filled-button-label-text-color: var(--green-color);
+    }
+}

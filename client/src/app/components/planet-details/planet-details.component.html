@@ -1,1 +1,44 @@
-@if (planet$()) { PLANET } @else { NO PLANET }
+@let planet = planet$(); @if (planet) {
+<div class="planets-grid">
+    <div class="planet-card planet-card__large">
+        @if (planet.imageUrl) {
+        <img
+            [src]="planet.imageUrl"
+            alt="{{ planet.planetName }}"
+            class="planet-avatar"
+        />
+        } @else {
+        <div class="planet-avatar"></div>
+        }
+
+        <div class="planet-description">
+            <h3>{{ planet.planetName }}</h3>
+            <p>{{ planet.description }}</p>
+        </div>
+    </div>
+
+    <div class="planet-info">
+        <div class="planet-card">
+            <h5>{{ planet.planetRadiusKM }}</h5>
+            <span>Radius in km</span>
+        </div>
+
+        <div class="planet-card">
+            <h5>{{ planet.planetColor }}</h5>
+            <span>Color</span>
+        </div>
+    </div>
+
+    <div class="planet-info">
+        <div class="planet-card">
+            <h5>{{ planet.distInMillionsKM.fromSun }}</h5>
+            <span>Dist. from Sun</span>
+        </div>
+
+        <div class="planet-card">
+            <h5>{{ planet.distInMillionsKM.fromEarth }}</h5>
+            <span>Dist. from Earth</span>
+        </div>
+    </div>
+</div>
+}

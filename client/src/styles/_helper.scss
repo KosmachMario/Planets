@@ -1,21 +1,3 @@
-button.primary {
-    --mdc-filled-button-container-color: var(
-        --mdc-filled-button-container-color-primary
-    );
-}
-
-button.secondary {
-    --mdc-filled-button-container-color: var(
-        --mdc-filled-button-container-color-secondary
-    );
-}
-
-button.tertiary {
-    --mdc-filled-button-container-color: var(
-        --mdc-filled-button-container-color-tertiary
-    );
-}
-
 .clickable {
     cursor: pointer;
 }

@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { PlanetsStateService } from '../../services/planets-state.service';
 import { PlanetsListingHeaderComponent } from '../planets-listing-header/planets-listing-header.component';
+import { PlanetsDetailsHeaderComponent } from '../planets-details-header/planets-details-header.component';
 
 @Component({
     selector: 'app-planets-header',
     standalone: true,
-    imports: [PlanetsListingHeaderComponent],
+    imports: [PlanetsListingHeaderComponent, PlanetsDetailsHeaderComponent],
     templateUrl: './planets-header.component.html',
     styleUrl: './planets-header.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,

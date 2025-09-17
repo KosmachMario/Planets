@@ -1,7 +1,9 @@
 <header class="planets-header">
     <h1 class="planets-title">{{ headerTitle() || "Planets" }}</h1>
 
-    @if(isDetailsView()) { } @else {
+    @if(isDetailsView()) {
+    <app-planets-details-header />
+    } @else {
     <app-planets-listing-header />
     }
 </header>

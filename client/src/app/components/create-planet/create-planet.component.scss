@@ -1,3 +1,5 @@
+@use "../../../styles/mixins" as mixins;
+
 .form-field-wrapper {
     display: flex;
     flex-direction: column;
@@ -38,8 +40,5 @@ label {
 }
 
 .planet-avatar {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    object-fit: cover;
+    @include mixins.planets-avatar(80px);
 }

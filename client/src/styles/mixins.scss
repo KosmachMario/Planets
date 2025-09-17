@@ -1,6 +1,13 @@
 @mixin mat-icon-size($size) {
-  height: $size;
-  width: $size;
-  font-size: $size;
-  line-height: $size;
+    height: $size;
+    width: $size;
+    font-size: $size;
+    line-height: $size;
+}
+
+@mixin planets-avatar($size) {
+    height: $size;
+    width: $size;
+    border-radius: 50%;
+    object-fit: cover;
 }

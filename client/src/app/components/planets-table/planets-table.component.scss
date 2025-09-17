@@ -1,3 +1,5 @@
+@use "../../../styles/mixins" as mixins;
+
 .planet-cell {
     display: grid;
     grid-template-columns: 40px 1fr; /* avatar fixed, text takes rest */
@@ -5,10 +7,7 @@
     gap: 12px;
 
     .planet-avatar {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        object-fit: cover;
+        @include mixins.planets-avatar(40px);
     }
 
     .planet-info {
@@ -30,16 +29,16 @@
 
 table.mat-table {
     width: 100%;
-    table-layout: fixed; /* enforce column widths */
+    table-layout: fixed;
 }
 
 .mat-column-planetName {
-    width: 30%; /* smaller first column */
+    width: 30%;
 }
 
 .mat-column-planetColor,
 .mat-column-planetRadiusKM,
 .mat-column-distanceFromSun,
 .mat-column-distanceFromEarth {
-    width: 17.5%; /* remaining columns share 70% */
+    width: 17.5%;
 }
