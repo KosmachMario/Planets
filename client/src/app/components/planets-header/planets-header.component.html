@@ -1,33 +1,7 @@
 <header class="planets-header">
-    <h1 class="planets-title">Planets</h1>
+    <h1 class="planets-title">{{ headerTitle() || "Planets" }}</h1>
 
-    <div class="planets-header__right-side">
-        <div class="toggle-view-buttons">
-            <mat-icon
-                svgIcon="planets-grid"
-                [class.active]="isGridView()"
-                (click)="setGridView(true)"
-            />
-
-            <div class="separator"></div>
-
-            <mat-icon
-                svgIcon="planets-list"
-                [class.active]="!isGridView()"
-                (click)="setGridView(false)"
-            />
-        </div>
-
-        <mat-form-field appearance="outline" class="search-field">
-            <mat-icon matPrefix>search</mat-icon>
-            <input
-                matInput
-                placeholder="Search..."
-                [formControl]="searchControl"
-            />
-        </mat-form-field>
-        <button mat-flat-button class="secondary" (click)="onNewPlanetClick()">
-            New planet
-        </button>
-    </div>
+    @if(isDetailsView()) { } @else {
+    <app-planets-listing-header />
+    }
 </header>

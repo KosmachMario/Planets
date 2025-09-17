@@ -66,6 +66,12 @@ export class PlanetsService {
             });
     }
 
+    public getPlanet(id: string): Observable<Planet> {
+        return this.http
+            .get<Planet>(`${this.SERVER_DOMAIN}/api/planets/${id}`)
+            .pipe(catchError(this.handleError), take(1));
+    }
+
     public createPlanet(planetPayload: FormData): void {
         this.http
             .post<Planet>(`${this.SERVER_DOMAIN}/api/planets`, planetPayload)

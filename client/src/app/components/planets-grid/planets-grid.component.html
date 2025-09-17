@@ -1,6 +1,6 @@
 <div class="planets-grid">
     @for (planet of planets(); track planet.id) {
-    <div class="planet-card">
+    <div class="planet-card clickable" (click)="onRowClick(planet)">
         @if (planet.imageUrl) {
         <img
             [src]="planet.imageUrl"

@@ -1,0 +1,38 @@
+@use "../../../styles/mixins" as mixins;
+
+:host {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.toggle-view-buttons {
+    height: 28px;
+    display: flex;
+    gap: 4px;
+
+    mat-icon {
+        @include mixins.mat-icon-size(28px);
+        cursor: pointer;
+
+        &.active {
+            ::ng-deep path {
+                fill: rgba(18, 81, 105, 1);
+            }
+            background-color: rgba(208, 220, 225, 1);
+            border-radius: 4px;
+        }
+    }
+}
+
+.separator {
+    height: 100%;
+    width: 1px;
+    background-color: var(--separator-color);
+}
+
+.search-field {
+    mat-icon {
+        @include mixins.mat-icon-size(20px);
+    }
+}

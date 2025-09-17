@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    input,
+    output,
+} from '@angular/core';
 import { Planet } from '../../models/planet.interface';
 
 @Component({
@@ -11,4 +16,9 @@ import { Planet } from '../../models/planet.interface';
 })
 export class PlanetsGridComponent {
     public planets = input.required<Planet[]>();
+    public navigateToDetails = output<Planet>();
+
+    public onRowClick(planet: Planet) {
+        this.navigateToDetails.emit(planet);
+    }
 }

@@ -1,76 +1,19 @@
-import {
-    ChangeDetectionStrategy,
-    Component,
-    DestroyRef,
-    inject,
-    OnInit,
-} from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
-import { MatDialog } from '@angular/material/dialog';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { PlanetsStateService } from '../../services/planets-state.service';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, skip, take } from 'rxjs';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { PlanetsService } from '../../services/planets.service';
-import { CreatePlanetComponent } from '../create-planet/create-planet.component';
+import { PlanetsListingHeaderComponent } from '../planets-listing-header/planets-listing-header.component';
 
 @Component({
     selector: 'app-planets-header',
     standalone: true,
-    imports: [
-        MatIconModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatButtonModule,
-        ReactiveFormsModule,
-    ],
+    imports: [PlanetsListingHeaderComponent],
     templateUrl: './planets-header.component.html',
     styleUrl: './planets-header.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PlanetsHeaderComponent implements OnInit {
+export class PlanetsHeaderComponent {
     private planetsStateService = inject(PlanetsStateService);
-    private planetsService = inject(PlanetsService);
-    private destroyRef = inject(DestroyRef);
-    private dialog = inject(MatDialog);
 
     public isGridView = this.planetsStateService.isGridView;
-
-    public searchControl = new FormControl('');
-
-    public ngOnInit() {
-        this.searchControl.valueChanges
-            .pipe(
-                skip(1),
-                takeUntilDestroyed(this.destroyRef),
-                debounceTime(100),
-                distinctUntilChanged()
-            )
-            .subscribe((value) => {
-                this.planetsService.searchText.set(value || '');
-            });
-    }
-
-    public setGridView(value: boolean): void {
-        this.planetsStateService.isGridView.set(value);
-    }
-
-    public onNewPlanetClick(): void {
-        const dialogRef = this.dialog.open(CreatePlanetComponent, {
-            width: '500px',
-            height: '640px',
-        });
-
-        dialogRef
-            .afterClosed()
-            .pipe(take(1))
-            .subscribe((result: FormData) => {
-                if (result) {
-                    this.planetsService.createPlanet(result);
-                }
-            });
-    }
+    public isDetailsView = this.planetsStateService.isDetailsView;
+    public headerTitle = this.planetsStateService.headerTitle;
 }

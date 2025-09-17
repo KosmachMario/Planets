@@ -4,6 +4,7 @@ import {
     Component,
     effect,
     input,
+    output,
     ViewChild,
 } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
@@ -22,6 +23,7 @@ export class PlanetsTableComponent implements AfterViewInit {
     @ViewChild(MatSort) sort!: MatSort;
 
     public planets = input.required<Planet[]>();
+    public navigateToDetails = output<Planet>();
 
     public displayedColumns: string[] = [
         'planetName',
@@ -51,5 +53,9 @@ export class PlanetsTableComponent implements AfterViewInit {
             }
         };
         this.dataSource.sort = this.sort;
+    }
+
+    public onRowClick(planet: Planet) {
+        this.navigateToDetails.emit(planet);
     }
 }

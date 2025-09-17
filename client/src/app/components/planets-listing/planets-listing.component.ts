@@ -11,6 +11,7 @@ import { PlanetsService } from '../../services/planets.service';
 import { PlanetsTableComponent } from '../planets-table/planets-table.component';
 import { PlanetsStateService } from '../../services/planets-state.service';
 import { PlanetsGridComponent } from '../planets-grid/planets-grid.component';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-planets-listing',
@@ -21,20 +22,23 @@ import { PlanetsGridComponent } from '../planets-grid/planets-grid.component';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PlanetsListingComponent implements OnInit {
-    public planetsStateService = inject(PlanetsStateService);
-    private planetsService = inject(PlanetsService);
+    private readonly planetsStateService = inject(PlanetsStateService);
+    private readonly planetsService = inject(PlanetsService);
+    private readonly router = inject(Router);
 
     public isGridView = this.planetsStateService.isGridView;
 
-    public planets: Signal<Planet[]>;
-
-    constructor() {
-        this.planets = toSignal(this.planetsService.planets$, {
-            initialValue: [],
-        });
-    }
+    public planets: Signal<Planet[]> = toSignal(this.planetsService.planets$, {
+        initialValue: [],
+    });
 
     public ngOnInit(): void {
+        this.planetsStateService.headerTitle.set('Planets');
+        this.planetsStateService.isDetailsView.set(false);
         this.planetsService.loadPlanets();
+    }
+
+    public onNavigateToDetails(planet: Planet): void {
+        this.router.navigate(['/planets', planet.planetName, planet.id]);
     }
 }
