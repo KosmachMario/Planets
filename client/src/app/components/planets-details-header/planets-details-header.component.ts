@@ -4,7 +4,12 @@ import { CreatePlanetComponent } from '../create-planet/create-planet.component'
 import { MatDialog } from '@angular/material/dialog';
 import { take } from 'rxjs';
 import { PlanetsService } from '../../services/planets.service';
-import { PlanetDialogData } from '../../models/planet-dialog-data.interface';
+import {
+    ConfirmationDialogData,
+    PlanetDialogData,
+} from '../../models/dialog-data.interface';
+import { Router } from '@angular/router';
+import { ConfirmationComponent } from '../confirmation/confirmation.component';
 
 @Component({
     selector: 'app-planets-details-header',
@@ -17,6 +22,7 @@ import { PlanetDialogData } from '../../models/planet-dialog-data.interface';
 export class PlanetsDetailsHeaderComponent {
     private dialog = inject(MatDialog);
     private planetsService = inject(PlanetsService);
+    private router = inject(Router);
 
     public onPlanetEditClick(): void {
         const dialogRef = this.dialog.open(CreatePlanetComponent, {
@@ -32,12 +38,38 @@ export class PlanetsDetailsHeaderComponent {
         dialogRef
             .afterClosed()
             .pipe(take(1))
-            .subscribe(({ formData, id }) => {
+            .subscribe((formData) => {
                 if (formData) {
-                    this.planetsService.editPlanet(formData, id);
+                    this.planetsService.editPlanet(
+                        formData,
+                        this.planetsService.currentPlanet()?.id
+                    );
                 }
             });
     }
 
-    public onPlanetDeleteClick(): void {}
+    public onPlanetDeleteClick(): void {
+        const dialogRef = this.dialog.open(ConfirmationComponent, {
+            width: '400px',
+            data: {
+                title: 'Confirm deleting',
+                name: this.planetsService.currentPlanet()?.planetName,
+                action: 'delete',
+            } as ConfirmationDialogData,
+        });
+
+        dialogRef
+            .afterClosed()
+            .pipe(take(1))
+            .subscribe((confirm) => {
+                if (confirm) {
+                    this.planetsService
+                        .deletePlanet(this.planetsService.currentPlanet()?.id)
+                        .pipe(take(1))
+                        .subscribe(() => {
+                            this.router.navigate(['/planets']);
+                        });
+                }
+            });
+    }
 }

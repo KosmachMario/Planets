@@ -15,7 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { PlanetDialogData } from '../../models/planet-dialog-data.interface';
+import { PlanetDialogData } from '../../models/dialog-data.interface';
 
 @Component({
     selector: 'app-planets-listing-header',

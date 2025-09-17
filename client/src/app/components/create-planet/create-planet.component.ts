@@ -14,13 +14,19 @@ import {
 import { MatButton } from '@angular/material/button';
 import {
     MAT_DIALOG_DATA,
+    MatDialog,
     MatDialogModule,
     MatDialogRef,
 } from '@angular/material/dialog';
 import { MatFormField } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { Planet } from '../../models/planet.interface';
-import { PlanetDialogData } from '../../models/planet-dialog-data.interface';
+import {
+    ConfirmationDialogData,
+    PlanetDialogData,
+} from '../../models/dialog-data.interface';
+import { ConfirmationComponent } from '../confirmation/confirmation.component';
+import { take } from 'rxjs';
 
 @Component({
     selector: 'app-create-planet',
@@ -40,6 +46,7 @@ import { PlanetDialogData } from '../../models/planet-dialog-data.interface';
 export class CreatePlanetComponent {
     private fb = inject(FormBuilder);
     private dialogRef = inject(MatDialogRef<CreatePlanetComponent>);
+    private dialog = inject(MatDialog);
 
     public data: PlanetDialogData = inject(MAT_DIALOG_DATA);
 
@@ -78,52 +85,70 @@ export class CreatePlanetComponent {
             this.imageUrl.set(reader.result as string);
         };
         reader.readAsDataURL(this.selectedFile);
+
+        this.planetForm.markAsDirty();
     }
 
     public onSubmit(): void {
         if (this.planetForm.valid) {
-            const planetData: Planet = this.planetForm.value;
-
-            const formData = new FormData();
-
-            formData.append('planetName', planetData.planetName);
-            formData.append('planetColor', planetData.planetColor);
-            formData.append('description', planetData.description);
-            formData.append(
-                'planetRadiusKM',
-                planetData.planetRadiusKM.toString()
-            );
-
-            formData.append(
-                'distInMillionsKM[fromSun]',
-                planetData.distInMillionsKM.fromSun.toString()
-            );
-            formData.append(
-                'distInMillionsKM[fromEarth]',
-                planetData.distInMillionsKM.fromEarth.toString()
-            );
-
-            if (this.selectedFile) {
-                formData.append(
-                    'file',
-                    this.selectedFile,
-                    this.selectedFile.name
-                );
-            } else if (this.data.planetToEdit?.imageUrl) {
-                formData.append('imageName', this.data.planetToEdit.imageName);
-                formData.append('imageUrl', this.data.planetToEdit.imageUrl);
-            }
-
-            if (this.data.planetToEdit) {
-                this.dialogRef.close({
-                    formData,
-                    id: this.data.planetToEdit.id,
-                });
-            } else {
-                this.dialogRef.close(formData);
-            }
+            this.checkConfirmationAndExecute();
         } else {
             this.planetForm.markAllAsTouched();
         }
+    }
+
+    private checkConfirmationAndExecute(): void {
+        const action = this.data.planetToEdit ? 'edit' : 'create';
+        const confirmationTitle = this.data.planetToEdit
+            ? 'editing'
+            : 'creating';
+
+        const dialogRef = this.dialog.open(ConfirmationComponent, {
+            width: '400px',
+            data: {
+                title: `Confirm ${confirmationTitle}`,
+                name: this.planetForm.value.planetName,
+                action,
+            } as ConfirmationDialogData,
+        });
+
+        dialogRef
+            .afterClosed()
+            .pipe(take(1))
+            .subscribe((confirm) => {
+                if (confirm) {
+                    const planetData: Planet = this.planetForm.value;
+
+                    const formData = this.generateFormData(planetData);
+
+                    this.dialogRef.close(formData);
+                }
+            });
+    }
+
+    private generateFormData(planetData: Planet): FormData {
+        const formData = new FormData();
+
+        formData.append('planetName', planetData.planetName);
+        formData.append('planetColor', planetData.planetColor);
+        formData.append('description', planetData.description);
+        formData.append('planetRadiusKM', planetData.planetRadiusKM.toString());
+
+        formData.append(
+            'distInMillionsKM[fromSun]',
+            planetData.distInMillionsKM.fromSun.toString()
+        );
+        formData.append(
+            'distInMillionsKM[fromEarth]',
+            planetData.distInMillionsKM.fromEarth.toString()
+        );
+
+        if (this.selectedFile) {
+            formData.append('file', this.selectedFile, this.selectedFile.name);
+        } else if (this.data.planetToEdit?.imageUrl) {
+            formData.append('imageName', this.data.planetToEdit.imageName);
+            formData.append('imageUrl', this.data.planetToEdit.imageUrl);
+        }
+        return formData;
     }
 }

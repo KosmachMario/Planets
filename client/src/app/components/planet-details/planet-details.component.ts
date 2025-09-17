@@ -4,7 +4,7 @@ import {
     inject,
     OnInit,
 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PlanetsService } from '../../services/planets.service';
 import { take } from 'rxjs';
 import { PlanetsStateService } from '../../services/planets-state.service';
@@ -19,6 +19,7 @@ import { PlanetsStateService } from '../../services/planets-state.service';
 })
 export class PlanetDetailsComponent implements OnInit {
     private readonly route = inject(ActivatedRoute);
+    private readonly router = inject(Router);
     private readonly planetsService = inject(PlanetsService);
     private readonly planetsStateService = inject(PlanetsStateService);
 
@@ -28,7 +29,14 @@ export class PlanetDetailsComponent implements OnInit {
     public planet$ = this.planetsService.currentPlanet;
 
     public ngOnInit(): void {
-        this.planetsService.getPlanet(this.planetId).pipe(take(1)).subscribe();
+        this.planetsService
+            .getPlanet(this.planetId)
+            .pipe(take(1))
+            .subscribe((planet) => {
+                if (!planet) {
+                    this.router.navigate(['/planets']);
+                }
+            });
         this.planetsStateService.headerTitle.set(this.planetName);
         this.planetsStateService.isDetailsView.set(true);
     }

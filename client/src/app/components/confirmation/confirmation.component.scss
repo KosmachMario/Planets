@@ -1,0 +1,34 @@
+@use "../../../styles/mixins" as mixins;
+@use "../../../styles/typography" as typo;
+
+:host {
+    display: block;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--title-color);
+}
+
+mat-icon {
+    @include mixins.mat-icon-size(60px);
+    margin-bottom: 20px;
+}
+
+h1 {
+    @include typo.small-heading-bold();
+    padding: 0;
+    margin-bottom: 16px;
+}
+
+p {
+    @include typo.large-text();
+    text-align: center;
+}
+
+.footer-actions {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}

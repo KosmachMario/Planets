@@ -98,7 +98,7 @@ export class PlanetsService {
             });
     }
 
-    public editPlanet(planetPayload: FormData, id: string): void {
+    public editPlanet(planetPayload: FormData, id: number | undefined): void {
         if (!id) {
             return;
         }
@@ -114,6 +114,18 @@ export class PlanetsService {
                     this.currentPlanet.set(planet);
                 },
             });
+    }
+
+    public deletePlanet(id: number | undefined): Observable<Planet | null> {
+        if (!id) {
+            return of(null);
+        }
+
+        this.currentPlanet.set(null);
+
+        return this.http
+            .delete<Planet>(`${this.SERVER_DOMAIN}/api/planets/${id}`)
+            .pipe(catchError(this.handleError), take(1));
     }
 
     private filterPlanets(term: string, allPlanets: Planet[]): void {

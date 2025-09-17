@@ -5,3 +5,9 @@ export interface PlanetDialogData {
     title: string;
     buttonText: string;
 }
+
+export interface ConfirmationDialogData {
+    title: string;
+    name: string;
+    action: 'edit' | 'delete' | 'create';
+}

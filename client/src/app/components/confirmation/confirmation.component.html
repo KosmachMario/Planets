@@ -1,0 +1,14 @@
+<mat-icon svgIcon="confirmation-warning" />
+
+<h1>{{ data.title }}</h1>
+
+<p>
+    Are you sure you want to {{ data.action }} <b>{{ data.name }}</b
+    >?
+</p>
+<div class="footer-actions">
+    <button mat-flat-button class="primary" (click)="dialogRef.close(true)">
+        Confirm
+    </button>
+    <button mat-button mat-dialog-close>Cancel</button>
+</div>

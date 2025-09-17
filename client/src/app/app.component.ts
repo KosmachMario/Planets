@@ -8,7 +8,11 @@ import { DomSanitizer } from '@angular/platform-browser';
     styleUrl: './app.component.scss',
 })
 export class AppComponent {
-    private materialIcons: string[] = ['planets-grid', 'planets-list'];
+    private materialIcons: string[] = [
+        'planets-grid',
+        'planets-list',
+        'confirmation-warning',
+    ];
 
     constructor(
         private readonly matIconRegistry: MatIconRegistry,

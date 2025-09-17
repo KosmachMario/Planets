@@ -4,6 +4,12 @@ $title-font-size: 38px;
     --title-font-size: #{$title-font-size};
 }
 
+@mixin small-heading-bold() {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 28px;
+}
+
 @mixin regular-heading() {
     font-weight: 500;
     font-size: 24px;
