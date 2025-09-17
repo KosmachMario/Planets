@@ -5,7 +5,9 @@ import {
     catchError,
     finalize,
     Observable,
+    of,
     take,
+    tap,
     throwError,
 } from 'rxjs';
 import { Planet } from '../models/planet.interface';
@@ -24,6 +26,7 @@ export class PlanetsService {
     public planets$ = this._filteredPlanets.asObservable();
     public loading$ = this._loading.asObservable();
 
+    public currentPlanet = signal<Planet | null>(null);
     public searchText = signal<string>('');
 
     constructor(private http: HttpClient) {
@@ -66,10 +69,22 @@ export class PlanetsService {
             });
     }
 
-    public getPlanet(id: string): Observable<Planet> {
+    public getPlanet(id: string | null): Observable<Planet | null> {
+        if (!id) {
+            return of(null);
+        }
+
+        this.currentPlanet.set(null);
+
         return this.http
             .get<Planet>(`${this.SERVER_DOMAIN}/api/planets/${id}`)
-            .pipe(catchError(this.handleError), take(1));
+            .pipe(
+                catchError(this.handleError),
+                take(1),
+                tap((planet) => {
+                    this.currentPlanet.set(planet);
+                })
+            );
     }
 
     public createPlanet(planetPayload: FormData): void {
@@ -77,9 +92,26 @@ export class PlanetsService {
             .post<Planet>(`${this.SERVER_DOMAIN}/api/planets`, planetPayload)
             .pipe(catchError(this.handleError), take(1))
             .subscribe({
-                next: (response: Planet) => {
-                    console.log('Planet created', response);
+                next: () => {
                     this.loadPlanets();
+                },
+            });
+    }
+
+    public editPlanet(planetPayload: FormData, id: string): void {
+        if (!id) {
+            return;
+        }
+
+        this.http
+            .put<Planet>(
+                `${this.SERVER_DOMAIN}/api/planets/${id}`,
+                planetPayload
+            )
+            .pipe(catchError(this.handleError), take(1))
+            .subscribe({
+                next: (planet: Planet) => {
+                    this.currentPlanet.set(planet);
                 },
             });
     }

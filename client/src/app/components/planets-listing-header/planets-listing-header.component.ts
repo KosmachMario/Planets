@@ -15,6 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { PlanetDialogData } from '../../models/planet-dialog-data.interface';
 
 @Component({
     selector: 'app-planets-listing-header',
@@ -61,6 +62,11 @@ export class PlanetsListingHeaderComponent {
         const dialogRef = this.dialog.open(CreatePlanetComponent, {
             width: '500px',
             height: '640px',
+            data: {
+                planetToEdit: null,
+                title: 'New planet',
+                buttonText: 'Create',
+            } as PlanetDialogData,
         });
 
         dialogRef

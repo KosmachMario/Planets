@@ -6,9 +6,7 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PlanetsService } from '../../services/planets.service';
-import { Observable, of } from 'rxjs';
-import { Planet } from '../../models/planet.interface';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { take } from 'rxjs';
 import { PlanetsStateService } from '../../services/planets-state.service';
 
 @Component({
@@ -27,20 +25,11 @@ export class PlanetDetailsComponent implements OnInit {
     private planetId = this.route.snapshot.paramMap.get('id');
     private planetName = this.route.snapshot.paramMap.get('planetName') || '';
 
-    public planet$ = toSignal(this.getPlanet(), {
-        initialValue: null,
-    });
+    public planet$ = this.planetsService.currentPlanet;
 
     public ngOnInit(): void {
+        this.planetsService.getPlanet(this.planetId).pipe(take(1)).subscribe();
         this.planetsStateService.headerTitle.set(this.planetName);
         this.planetsStateService.isDetailsView.set(true);
-    }
-
-    private getPlanet(): Observable<Planet | null> {
-        if (!this.planetId) {
-            return of(null);
-        }
-
-        return this.planetsService.getPlanet(this.planetId);
     }
 }

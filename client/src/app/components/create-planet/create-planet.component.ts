@@ -12,10 +12,15 @@ import {
     Validators,
 } from '@angular/forms';
 import { MatButton } from '@angular/material/button';
-import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import {
+    MAT_DIALOG_DATA,
+    MatDialogModule,
+    MatDialogRef,
+} from '@angular/material/dialog';
 import { MatFormField } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { Planet } from '../../models/planet.interface';
+import { PlanetDialogData } from '../../models/planet-dialog-data.interface';
 
 @Component({
     selector: 'app-create-planet',
@@ -36,6 +41,8 @@ export class CreatePlanetComponent {
     private fb = inject(FormBuilder);
     private dialogRef = inject(MatDialogRef<CreatePlanetComponent>);
 
+    public data: PlanetDialogData = inject(MAT_DIALOG_DATA);
+
     public planetForm: FormGroup;
 
     public imageUrl = signal<string | null>(null);
@@ -52,6 +59,11 @@ export class CreatePlanetComponent {
                 fromEarth: [null, [Validators.required, Validators.min(0)]],
             }),
         });
+
+        if (this.data.planetToEdit) {
+            this.planetForm.patchValue(this.data.planetToEdit);
+            this.imageUrl.set(this.data.planetToEdit.imageUrl);
+        }
     }
 
     public onFileSelected(event: Event): void {
@@ -97,9 +109,19 @@ export class CreatePlanetComponent {
                     this.selectedFile,
                     this.selectedFile.name
                 );
+            } else if (this.data.planetToEdit?.imageUrl) {
+                formData.append('imageName', this.data.planetToEdit.imageName);
+                formData.append('imageUrl', this.data.planetToEdit.imageUrl);
             }
 
-            this.dialogRef.close(formData);
+            if (this.data.planetToEdit) {
+                this.dialogRef.close({
+                    formData,
+                    id: this.data.planetToEdit.id,
+                });
+            } else {
+                this.dialogRef.close(formData);
+            }
         } else {
             this.planetForm.markAllAsTouched();
         }
