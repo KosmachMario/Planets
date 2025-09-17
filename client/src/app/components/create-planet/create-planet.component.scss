@@ -1,0 +1,45 @@
+.form-field-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 16px;
+}
+
+.form-field-photo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .browse-button {
+        --mdc-filled-button-container-color: rgba(89, 95, 96, 1);
+    }
+
+    label {
+        font-size: 14px;
+    }
+}
+
+.flex-row {
+    display: flex;
+    gap: 20px;
+
+    > .form-field-wrapper {
+        flex: 1;
+    }
+}
+
+label {
+    color: rgba(89, 95, 96, 1);
+    font-size: 12px;
+}
+
+.file-input {
+    display: none;
+}
+
+.planet-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+}

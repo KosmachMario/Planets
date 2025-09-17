@@ -55,6 +55,29 @@ export class PlanetsService {
             });
     }
 
+    public reloadPlanets(): void {
+        this.http
+            .get<Planet[]>(`${this.SERVER_DOMAIN}/api/planets/reload`)
+            .pipe(catchError(this.handleError), take(1))
+            .subscribe({
+                next: (response) => {
+                    this._allPlanets.set(response);
+                },
+            });
+    }
+
+    public createPlanet(planetPayload: FormData): void {
+        this.http
+            .post<Planet>(`${this.SERVER_DOMAIN}/api/planets`, planetPayload)
+            .pipe(catchError(this.handleError), take(1))
+            .subscribe({
+                next: (response: Planet) => {
+                    console.log('Planet created', response);
+                    this.loadPlanets();
+                },
+            });
+    }
+
     private filterPlanets(term: string, allPlanets: Planet[]): void {
         if (!term) {
             this._filteredPlanets.next(allPlanets);

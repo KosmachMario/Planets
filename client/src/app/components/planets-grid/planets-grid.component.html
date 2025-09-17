@@ -1,11 +1,15 @@
 <div class="planets-grid">
     @for (planet of planets(); track planet.id) {
     <div class="planet-card">
+        @if (planet.imageUrl) {
         <img
             [src]="planet.imageUrl"
             alt="{{ planet.planetName }}"
             class="planet-avatar"
         />
+        } @else {
+        <div class="planet-avatar"></div>
+        }
 
         <div class="planet-info">
             <h3>{{ planet.planetName }}</h3>

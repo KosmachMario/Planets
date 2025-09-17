@@ -1,0 +1,80 @@
+<h1 mat-dialog-title>New planet</h1>
+
+<mat-dialog-content>
+    <div class="form-field-photo">
+        <input
+            #uploadImage
+            accept="image/*"
+            type="file"
+            class="file-input"
+            (change)="onFileSelected($event)"
+        />
+
+        <label>Photo</label>
+
+        @if (imageUrl()) {
+        <img [src]="imageUrl()" class="planet-avatar" alt="Planet Image" />
+        }
+
+        <button
+            mat-flat-button
+            class="browse-button"
+            (click)="uploadImage.click()"
+        >
+            Browse...
+        </button>
+    </div>
+    <form [formGroup]="planetForm">
+        <div class="form-field-wrapper">
+            <label>Name</label>
+            <mat-form-field appearance="outline">
+                <input matInput formControlName="planetName" />
+            </mat-form-field>
+        </div>
+        <div class="form-field-wrapper">
+            <label>Description</label>
+            <mat-form-field appearance="outline" class="text-area-form-field">
+                <textarea
+                    matInput
+                    cdkTextareaAutosize
+                    cdkAutosizeMinRows="5"
+                    cdkAutosizeMaxRows="5"
+                    formControlName="description"
+                ></textarea>
+            </mat-form-field>
+        </div>
+        <div class="flex-row">
+            <div class="form-field-wrapper">
+                <label>Radius in km</label>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="planetRadiusKM" />
+                </mat-form-field>
+            </div>
+            <div class="form-field-wrapper">
+                <label>Color</label>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="planetColor" />
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="flex-row" formGroupName="distInMillionsKM">
+            <div class="form-field-wrapper">
+                <label>Dist. from Sun</label>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="fromSun" />
+                </mat-form-field>
+            </div>
+            <div class="form-field-wrapper">
+                <label>Dist. from Earth</label>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="fromEarth" />
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="center">
+    <button mat-flat-button class="primary" (click)="onSubmit()">Create</button>
+    <button mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

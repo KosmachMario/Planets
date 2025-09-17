@@ -6,14 +6,16 @@ import {
     OnInit,
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDialog } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { PlanetsStateService } from '../../services/planets-state.service';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, skip } from 'rxjs';
+import { debounceTime, distinctUntilChanged, skip, take } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { PlanetsService } from '../../services/planets.service';
+import { CreatePlanetComponent } from '../create-planet/create-planet.component';
 
 @Component({
     selector: 'app-planets-header',
@@ -33,6 +35,7 @@ export class PlanetsHeaderComponent implements OnInit {
     private planetsStateService = inject(PlanetsStateService);
     private planetsService = inject(PlanetsService);
     private destroyRef = inject(DestroyRef);
+    private dialog = inject(MatDialog);
 
     public isGridView = this.planetsStateService.isGridView;
 
@@ -55,5 +58,19 @@ export class PlanetsHeaderComponent implements OnInit {
         this.planetsStateService.isGridView.set(value);
     }
 
-    public onNewPlanetClick(): void {}
+    public onNewPlanetClick(): void {
+        const dialogRef = this.dialog.open(CreatePlanetComponent, {
+            width: '500px',
+            height: '640px',
+        });
+
+        dialogRef
+            .afterClosed()
+            .pipe(take(1))
+            .subscribe((result: FormData) => {
+                if (result) {
+                    this.planetsService.createPlanet(result);
+                }
+            });
+    }
 }
