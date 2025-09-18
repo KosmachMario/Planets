@@ -1,9 +1,3 @@
-$title-font-size: 38px;
-
-:root {
-    --title-font-size: #{$title-font-size};
-}
-
 @mixin small-heading-bold() {
     font-weight: 600;
     font-size: 20px;
@@ -19,6 +13,12 @@ $title-font-size: 38px;
 @mixin large-heading() {
     font-weight: 600;
     font-size: 36px;
+    line-height: 40px;
+}
+
+@mixin title-text() {
+    font-weight: 700;
+    font-size: 38px;
     line-height: 40px;
 }
 
