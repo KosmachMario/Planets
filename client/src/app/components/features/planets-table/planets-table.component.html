@@ -1,4 +1,4 @@
-<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z4">
+<table mat-table [dataSource]="dataSource" matSort>
     <!-- Name Column -->
     <ng-container matColumnDef="planetName">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
@@ -7,11 +7,11 @@
                 <app-planet-avatar
                     [imageUrl]="planet.imageUrl"
                     [planetName]="planet.planetName"
-                    [avatarSize]="40"
+                    [avatarSize]="60"
                 />
 
                 <div class="planet-info">
-                    <div class="planet-name">{{ planet.planetName }}</div>
+                    <div>{{ planet.planetName }}</div>
                     <div class="planet-description">
                         {{ planet.description }}
                     </div>

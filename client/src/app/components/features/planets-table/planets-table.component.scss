@@ -3,22 +3,19 @@
 
 .planet-cell {
     display: grid;
-    grid-template-columns: var(--spacing-xl) 1fr; /* avatar fixed, text takes rest */
+    grid-template-columns: 60px 1fr; /* avatar fixed, text takes rest */
     align-items: center;
     gap: var(--spacing-sm);
 
     .planet-info {
         overflow: hidden;
-
-        .planet-name {
-            font-weight: 500;
-        }
+        max-width: 300px;
 
         .planet-description {
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            color: var(--gray-base);
+            color: var(--light-gray-20);
 
             @include typo.regular-text();
         }
@@ -31,12 +28,13 @@ table.mat-table {
 }
 
 .mat-column-planetName {
-    width: 30%;
+    width: 40%;
+    padding: var(--spacing-xs) var(--spacing-default);
 }
 
 .mat-column-planetColor,
 .mat-column-planetRadiusKM,
 .mat-column-distanceFromSun,
 .mat-column-distanceFromEarth {
-    width: 17.5%;
+    width: 15%;
 }

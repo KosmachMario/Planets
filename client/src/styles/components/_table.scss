@@ -1,0 +1,19 @@
+@use "../abstracts/typography" as typo;
+
+:root {
+    --mat-table-background-color: var(--white);
+    --mat-table-header-container-height: 40px;
+    --mat-table-header-headline-color: var(--light-gray-20);
+    --mat-table-row-item-outline-color: var(--light-gray);
+}
+
+table {
+    .mat-mdc-header-cell {
+        @include typo.regular-text();
+    }
+
+    .mat-mdc-cell {
+        @include typo.xs-heading();
+        color: var(--title-color);
+    }
+}

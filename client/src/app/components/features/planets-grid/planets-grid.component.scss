@@ -17,6 +17,11 @@
 
 app-planet-avatar {
     margin-bottom: var(--spacing-sm);
+    color: var(--title-color);
+}
+
+.app-card {
+    min-height: 515px;
 }
 
 .planet-info {
@@ -30,7 +35,7 @@ app-planet-avatar {
     .planet-description {
         @include typo.large-text();
         color: var(--gray-base);
-        margin: var(--spacing-2xs) 0 var(--spacing-sm);
+        margin: var(--spacing-lg) 0 var(--spacing-sm);
     }
 }
 
@@ -41,4 +46,10 @@ app-planet-avatar {
     display: grid;
     gap: var(--spacing-md);
     grid-template-columns: 1fr 1fr;
+
+    h5 {
+        margin-bottom: var(--spacing-2xs);
+        color: var(--title-color);
+        @include typo.xs-heading-bold();
+    }
 }

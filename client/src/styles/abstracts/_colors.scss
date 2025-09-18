@@ -1,6 +1,7 @@
 $white: rgba(255, 255, 255, 1);
 $background-color: rgba(236, 239, 244, 1);
 $gray-d60: rgba(36, 38, 38, 1);
+$gray-l20: rgba(122, 127, 128, 1);
 $gray-l80: rgba(222, 223, 223, 1);
 $gray-base: rgba(89, 95, 96, 1);
 $green-color: rgba(18, 81, 105, 1);
@@ -13,6 +14,7 @@ $tertiary-button-color: rgba(208, 220, 225, 1);
     --background-color: #{$background-color};
     --white: #{$white};
     --light-gray: #{$gray-l80};
+    --light-gray-20: #{$gray-l20};
     --green-color: #{$green-color};
     --gray-base: #{$gray-base};
     --primary-button-color: #{$primary-button-color};
