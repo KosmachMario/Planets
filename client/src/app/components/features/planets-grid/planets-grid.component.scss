@@ -1,4 +1,5 @@
 @use "../../../../styles/utils/mixins.scss" as mixins;
+@use "../../../../styles/abstracts/typography" as typo;
 
 .planets-grid {
     display: grid;
@@ -14,15 +15,6 @@
     }
 }
 
-.planet-card {
-    background: var(--white);
-    border-radius: 12px;
-    padding: var(--spacing-md);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 .planet-avatar {
     @include mixins.planets-avatar(80px);
     margin-bottom: var(--spacing-sm);
@@ -33,12 +25,11 @@
 
     h3 {
         margin: 0;
-        font-size: 18px;
-        font-weight: 600;
+        @include typo.large-heading();
     }
 
     .planet-description {
-        font-size: 14px;
+        @include typo.large-text();
         color: var(--gray-base);
         margin: var(--spacing-2xs) 0 var(--spacing-sm);
     }
@@ -46,7 +37,7 @@
 
 .planet-details {
     margin-top: auto;
-    font-size: 13px;
+    @include typo.regular-text();
     color: var(--gray-base);
     display: grid;
     gap: var(--spacing-md);
