@@ -1,6 +1,7 @@
 import {
     ChangeDetectionStrategy,
     Component,
+    effect,
     inject,
     OnInit,
 } from '@angular/core';
@@ -28,6 +29,17 @@ export class PlanetDetailsComponent implements OnInit {
 
     public planet$ = this.planetsService.currentPlanet;
 
+    constructor() {
+        effect(
+            () => {
+                this.planetsStateService.headerTitle.set(
+                    this.planet$()?.planetName || this.planetName || ''
+                );
+            },
+            { allowSignalWrites: true }
+        );
+    }
+
     public ngOnInit(): void {
         this.planetsService
             .getPlanet(this.planetId)
@@ -37,7 +49,6 @@ export class PlanetDetailsComponent implements OnInit {
                     this.router.navigate(['/planets']);
                 }
             });
-        this.planetsStateService.headerTitle.set(this.planetName);
         this.planetsStateService.isDetailsView.set(true);
     }
 }
