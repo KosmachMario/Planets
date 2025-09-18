@@ -1,6 +1,6 @@
-@use "styles/colors";
-@use "styles/typography";
-@use "styles/helper";
+@use "styles/abstracts/colors";
+@use "styles/abstracts/typography";
+@use "styles/utils/helper";
 @use "styles/components/input";
 @use "styles/components/dialog";
 @use "styles/components/button";

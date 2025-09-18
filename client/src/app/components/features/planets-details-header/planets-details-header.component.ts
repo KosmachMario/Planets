@@ -1,15 +1,15 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { CreatePlanetComponent } from '../create-planet/create-planet.component';
+import { CreatePlanetComponent } from '../../shared/create-planet/create-planet.component';
 import { MatDialog } from '@angular/material/dialog';
 import { take } from 'rxjs';
-import { PlanetsService } from '../../services/planets.service';
+import { PlanetsService } from '../../../services/planets.service';
 import {
     ConfirmationDialogData,
     PlanetDialogData,
-} from '../../models/dialog-data.interface';
+} from '../../../models/dialog-data.interface';
 import { Router } from '@angular/router';
-import { ConfirmationComponent } from '../confirmation/confirmation.component';
+import { ConfirmationComponent } from '../../shared/confirmation/confirmation.component';
 
 @Component({
     selector: 'app-planets-details-header',

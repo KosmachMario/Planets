@@ -7,15 +7,15 @@ import {
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, skip, take } from 'rxjs';
-import { CreatePlanetComponent } from '../create-planet/create-planet.component';
-import { PlanetsService } from '../../services/planets.service';
 import { MatDialog } from '@angular/material/dialog';
-import { PlanetsStateService } from '../../services/planets-state.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { PlanetDialogData } from '../../models/dialog-data.interface';
+import { PlanetsStateService } from '../../../services/planets-state.service';
+import { PlanetsService } from '../../../services/planets.service';
+import { CreatePlanetComponent } from '../../shared/create-planet/create-planet.component';
+import { PlanetDialogData } from '../../../models/dialog-data.interface';
 
 @Component({
     selector: 'app-planets-listing-header',

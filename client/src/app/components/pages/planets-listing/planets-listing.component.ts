@@ -6,12 +6,12 @@ import {
     Signal,
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { Planet } from '../../models/planet.interface';
-import { PlanetsService } from '../../services/planets.service';
-import { PlanetsTableComponent } from '../planets-table/planets-table.component';
-import { PlanetsStateService } from '../../services/planets-state.service';
-import { PlanetsGridComponent } from '../planets-grid/planets-grid.component';
 import { Router } from '@angular/router';
+import { PlanetsGridComponent } from '../../features/planets-grid/planets-grid.component';
+import { PlanetsStateService } from '../../../services/planets-state.service';
+import { PlanetsService } from '../../../services/planets.service';
+import { Planet } from '../../../models/planet.interface';
+import { PlanetsTableComponent } from '../../features/planets-table/planets-table.component';
 
 @Component({
     selector: 'app-planets-listing',

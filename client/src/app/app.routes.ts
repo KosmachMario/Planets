@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
-import { PlanetsWrapperComponent } from './components/planets-wrapper/planets-wrapper.component';
-import { PlanetDetailsComponent } from './components/planet-details/planet-details.component';
-import { PlanetsListingComponent } from './components/planets-listing/planets-listing.component';
+import { PlanetsWrapperComponent } from './components/layout/planets-wrapper/planets-wrapper.component';
+import { PlanetsListingComponent } from './components/pages/planets-listing/planets-listing.component';
+import { PlanetDetailsComponent } from './components/pages/planet-details/planet-details.component';
 
 export const routes: Routes = [
     {

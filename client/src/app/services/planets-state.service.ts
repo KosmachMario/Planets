@@ -4,8 +4,7 @@ import { Injectable, signal } from '@angular/core';
     providedIn: 'root',
 })
 export class PlanetsStateService {
+    public headerTitle = signal('');
     public isGridView = signal(true);
     public isDetailsView = signal(false);
-
-    public headerTitle = signal('');
 }

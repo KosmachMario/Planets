@@ -13,12 +13,7 @@ $tertiary-button-color: rgba(208, 220, 225, 1);
     --light-gray: #{$gray-l80};
     --green-color: #{$green-color};
     --gray-base: #{$gray-base};
-}
-
-:root {
-    --mdc-filled-button-container-color-primary: #{$primary-button-color};
-    --mdc-filled-button-container-color-secondary: #{$secondary-button-color};
-    --mdc-filled-button-container-color-tertiary: #{$tertiary-button-color};
-
-    --mdc-filled-button-container-shape: 4px;
+    --primary-button-color: #{$primary-button-color};
+    --secondary-button-color: #{$secondary-button-color};
+    --tertiary-button-color: #{$tertiary-button-color};
 }

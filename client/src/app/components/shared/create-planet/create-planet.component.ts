@@ -20,13 +20,13 @@ import {
 } from '@angular/material/dialog';
 import { MatFormField } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
-import { Planet } from '../../models/planet.interface';
+import { Planet } from '../../../models/planet.interface';
 import {
     ConfirmationDialogData,
     PlanetDialogData,
-} from '../../models/dialog-data.interface';
-import { ConfirmationComponent } from '../confirmation/confirmation.component';
+} from '../../../models/dialog-data.interface';
 import { take } from 'rxjs';
+import { ConfirmationComponent } from '../confirmation/confirmation.component';
 
 @Component({
     selector: 'app-create-planet',

@@ -5,8 +5,8 @@ import {
     MatDialogModule,
     MatDialogRef,
 } from '@angular/material/dialog';
-import { ConfirmationDialogData } from '../../models/dialog-data.interface';
 import { MatIcon } from '@angular/material/icon';
+import { ConfirmationDialogData } from '../../../models/dialog-data.interface';
 
 @Component({
     selector: 'app-confirmation',

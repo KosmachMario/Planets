@@ -6,9 +6,9 @@ import {
     OnInit,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PlanetsService } from '../../services/planets.service';
 import { take } from 'rxjs';
-import { PlanetsStateService } from '../../services/planets-state.service';
+import { PlanetsService } from '../../../services/planets.service';
+import { PlanetsStateService } from '../../../services/planets-state.service';
 
 @Component({
     selector: 'app-planet-details',

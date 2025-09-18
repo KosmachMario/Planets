@@ -8,8 +8,8 @@ import {
     ViewChild,
 } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { Planet } from '../../models/planet.interface';
 import { MatSort, MatSortModule } from '@angular/material/sort';
+import { Planet } from '../../../models/planet.interface';
 
 @Component({
     selector: 'app-planets-table',

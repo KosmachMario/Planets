@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { PlanetsStateService } from '../../services/planets-state.service';
-import { PlanetsListingHeaderComponent } from '../planets-listing-header/planets-listing-header.component';
-import { PlanetsDetailsHeaderComponent } from '../planets-details-header/planets-details-header.component';
+import { PlanetsDetailsHeaderComponent } from '../../features/planets-details-header/planets-details-header.component';
+import { PlanetsStateService } from '../../../services/planets-state.service';
+import { PlanetsListingHeaderComponent } from '../../features/planets-listing-header/planets-listing-header.component';
 
 @Component({
     selector: 'app-planets-header',

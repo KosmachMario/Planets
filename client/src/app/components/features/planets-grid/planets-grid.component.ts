@@ -4,7 +4,7 @@ import {
     input,
     output,
 } from '@angular/core';
-import { Planet } from '../../models/planet.interface';
+import { Planet } from '../../../models/planet.interface';
 
 @Component({
     selector: 'app-planets-grid',

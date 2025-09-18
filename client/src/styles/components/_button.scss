@@ -1,3 +1,12 @@
+:root {
+    --mdc-filled-button-container-color-primary: var(--primary-button-color);
+    --mdc-filled-button-container-color-secondary: var(
+        --secondary-button-color
+    );
+    --mdc-filled-button-container-color-tertiary: var(--tertiary-button-color);
+    --mdc-filled-button-container-shape: 4px;
+}
+
 button.mdc-button {
     min-width: 120px;
 

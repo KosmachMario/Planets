@@ -11,3 +11,15 @@
     border-radius: 50%;
     object-fit: cover;
 }
+
+@mixin from-desktop-down {
+    @media (max-width: 1200px) {
+        @content;
+    }
+}
+
+@mixin from-tablet-down {
+    @media (max-width: 768px) {
+        @content;
+    }
+}

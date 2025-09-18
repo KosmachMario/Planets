@@ -1,4 +1,4 @@
-@use "../../../styles/mixins" as mixins;
+@use "../../../../styles/utils/mixins.scss" as mixins;
 
 .planet-cell {
     display: grid;
