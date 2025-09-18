@@ -3,7 +3,7 @@
 
 :host {
     display: block;
-    padding: 28px;
+    padding: var(--spacing-lg);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,13 +12,13 @@
 
 mat-icon {
     @include mixins.mat-icon-size(60px);
-    margin-bottom: 20px;
+    margin-bottom: var(--spacing-default);
 }
 
 h1 {
     @include typo.small-heading-bold();
     padding: 0;
-    margin-bottom: 16px;
+    margin-bottom: var(--spacing-md);
 }
 
 p {
@@ -27,8 +27,8 @@ p {
 }
 
 .footer-actions {
-    margin-top: 30px;
+    margin-top: var(--spacing-lg);
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: var(--spacing-default);
 }

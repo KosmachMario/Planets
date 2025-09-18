@@ -7,7 +7,7 @@
 
 .planets-grid {
     display: grid;
-    gap: 20px;
+    gap: var(--spacing-default);
     grid-template-columns: 4fr 2fr 1fr;
 
     @include mixins.from-desktop-down {
@@ -27,7 +27,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 20px;
+    gap: var(--spacing-default);
 
     > .planet-card {
         flex: 1;
@@ -38,7 +38,7 @@
 .planet-card {
     background: white;
     border-radius: 12px;
-    padding: 16px;
+    padding: var(--spacing-md);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -46,7 +46,7 @@
     &__large {
         display: flex;
         flex-direction: row;
-        gap: 30px;
+        gap: var(--spacing-lg);
 
         .planet-description {
             max-width: 325px;
@@ -71,7 +71,7 @@
     > h5 {
         color: var(--title-color);
         @include typo.regular-heading();
-        margin: 4px;
+        margin: var(--spacing-2xs);
     }
 }
 

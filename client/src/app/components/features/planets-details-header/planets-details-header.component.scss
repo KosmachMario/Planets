@@ -1,5 +1,5 @@
 :host {
     display: flex;
-    gap: 20px;
+    gap: var(--spacing-default);
     align-items: center;
 }

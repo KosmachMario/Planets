@@ -2,9 +2,9 @@
 
 .planet-cell {
     display: grid;
-    grid-template-columns: 40px 1fr; /* avatar fixed, text takes rest */
+    grid-template-columns: var(--spacing-xl) 1fr; /* avatar fixed, text takes rest */
     align-items: center;
-    gap: 12px;
+    gap: var(--spacing-sm);
 
     .planet-avatar {
         @include mixins.planets-avatar(40px);

@@ -1,0 +1,17 @@
+$spacing-2xs: 4px;
+$spacing-xs: 8px;
+$spacing-sm: 12px;
+$spacing-md: 16px;
+$spacing-default: 20px;
+$spacing-lg: 28px;
+$spacing-xl: 40px;
+
+:root {
+    --spacing-2xs: #{$spacing-2xs};
+    --spacing-xs: #{$spacing-xs};
+    --spacing-sm: #{$spacing-sm};
+    --spacing-md: #{$spacing-md};
+    --spacing-default: #{$spacing-default};
+    --spacing-lg: #{$spacing-lg};
+    --spacing-xl: #{$spacing-xl};
+}

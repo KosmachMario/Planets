@@ -3,8 +3,8 @@
 .form-field-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 4px;
-    margin-bottom: 16px;
+    gap: var(--spacing-2xs);
+    margin-bottom: var(--spacing-md);
 }
 
 .form-field-photo {
@@ -23,7 +23,7 @@
 
 .flex-row {
     display: flex;
-    gap: 20px;
+    gap: var(--spacing-default);
 
     > .form-field-wrapper {
         flex: 1;

@@ -2,7 +2,7 @@
 
 .planets-grid {
     display: grid;
-    gap: 16px;
+    gap: var(--spacing-md);
     grid-template-columns: repeat(4, 1fr);
 
     @include mixins.from-desktop-down {
@@ -17,7 +17,7 @@
 .planet-card {
     background: white;
     border-radius: 12px;
-    padding: 16px;
+    padding: var(--spacing-md);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -25,7 +25,7 @@
 
 .planet-avatar {
     @include mixins.planets-avatar(80px);
-    margin-bottom: 12px;
+    margin-bottom: var(--spacing-sm);
 }
 
 .planet-info {
@@ -49,6 +49,6 @@
     font-size: 13px;
     color: #444;
     display: grid;
-    gap: 16px;
+    gap: var(--spacing-md);
     grid-template-columns: 1fr 1fr;
 }

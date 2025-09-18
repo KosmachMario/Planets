@@ -5,12 +5,12 @@
 }
 
 .planets-header {
-    padding: 40px;
+    padding: var(--spacing-xl);
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: var(--spacing-default);
 }
 
 .planets-title {

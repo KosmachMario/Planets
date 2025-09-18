@@ -1,9 +1,10 @@
 @use "styles/abstracts/colors";
 @use "styles/abstracts/typography";
-@use "styles/utils/helper";
+@use "styles/abstracts/spacings";
 @use "styles/components/input";
 @use "styles/components/dialog";
 @use "styles/components/button";
+@use "styles/utils/helper";
 
 html,
 body {
