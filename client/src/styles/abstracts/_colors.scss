@@ -1,3 +1,4 @@
+$white: rgba(255, 255, 255, 1);
 $background-color: rgba(236, 239, 244, 1);
 $gray-d60: rgba(36, 38, 38, 1);
 $gray-l80: rgba(222, 223, 223, 1);
@@ -10,6 +11,7 @@ $tertiary-button-color: rgba(208, 220, 225, 1);
 :root {
     --title-color: #{$gray-d60};
     --background-color: #{$background-color};
+    --white: #{$white};
     --light-gray: #{$gray-l80};
     --green-color: #{$green-color};
     --gray-base: #{$gray-base};

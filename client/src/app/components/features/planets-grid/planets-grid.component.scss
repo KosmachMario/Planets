@@ -15,7 +15,7 @@
 }
 
 .planet-card {
-    background: white;
+    background: var(--white);
     border-radius: 12px;
     padding: var(--spacing-md);
     display: flex;
@@ -39,15 +39,15 @@
 
     .planet-description {
         font-size: 14px;
-        color: #666;
-        margin: 4px 0 12px;
+        color: var(--gray-base);
+        margin: var(--spacing-2xs) 0 var(--spacing-sm);
     }
 }
 
 .planet-details {
     margin-top: auto;
     font-size: 13px;
-    color: #444;
+    color: var(--gray-base);
     display: grid;
     gap: var(--spacing-md);
     grid-template-columns: 1fr 1fr;

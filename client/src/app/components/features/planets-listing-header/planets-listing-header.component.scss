@@ -18,9 +18,9 @@
 
         &.active {
             ::ng-deep path {
-                fill: rgba(18, 81, 105, 1);
+                fill: var(--green-color);
             }
-            background-color: rgba(208, 220, 225, 1);
+            background-color: var(--tertiary-button-color);
             border-radius: var(--spacing-2xs);
         }
     }

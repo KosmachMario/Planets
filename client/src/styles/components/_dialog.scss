@@ -1,5 +1,5 @@
 :root {
-    --mdc-dialog-container-shape: 8px;
+    --mdc-dialog-container-shape: var(--spacing-xs);
 }
 
 .mat-mdc-dialog-surface {

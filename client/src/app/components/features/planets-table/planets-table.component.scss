@@ -21,7 +21,7 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            color: gray;
+            color: var(--gray-base);
             font-size: 12px;
         }
     }

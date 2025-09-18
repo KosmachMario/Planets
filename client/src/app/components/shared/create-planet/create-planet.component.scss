@@ -13,7 +13,7 @@
     align-items: center;
 
     .browse-button {
-        --mdc-filled-button-container-color: rgba(89, 95, 96, 1);
+        --mdc-filled-button-container-color: var(--gray-base);
     }
 
     label {
@@ -31,7 +31,7 @@
 }
 
 label {
-    color: rgba(89, 95, 96, 1);
+    color: var(--gray-base);
     font-size: 12px;
 }
 
