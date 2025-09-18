@@ -7,10 +7,6 @@
     align-items: center;
     gap: var(--spacing-sm);
 
-    .planet-avatar {
-        @include mixins.planets-avatar(40px);
-    }
-
     .planet-info {
         overflow: hidden;
 

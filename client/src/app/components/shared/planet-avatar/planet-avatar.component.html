@@ -1,0 +1,15 @@
+@if (imageUrl()) {
+<img
+    [src]="imageUrl()"
+    alt="{{ planetName() }}"
+    class="planet-avatar"
+    [style.width.px]="avatarSize()"
+    [style.height.px]="avatarSize()"
+/>
+} @else {
+<div
+    class="planet-avatar"
+    [style.width.px]="avatarSize()"
+    [style.height.px]="avatarSize()"
+></div>
+}

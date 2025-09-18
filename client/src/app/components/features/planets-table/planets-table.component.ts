@@ -10,11 +10,12 @@ import {
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { Planet } from '../../../models/planet.interface';
+import { PlanetAvatarComponent } from '../../shared/planet-avatar/planet-avatar.component';
 
 @Component({
     selector: 'app-planets-table',
     standalone: true,
-    imports: [MatTableModule, MatSortModule],
+    imports: [MatTableModule, MatSortModule, PlanetAvatarComponent],
     templateUrl: `./planets-table.component.html`,
     styleUrl: './planets-table.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,

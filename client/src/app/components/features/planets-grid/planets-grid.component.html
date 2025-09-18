@@ -1,15 +1,10 @@
 <div class="planets-grid">
     @for (planet of planets(); track planet.id) {
     <div class="app-card clickable" (click)="onRowClick(planet)">
-        @if (planet.imageUrl) {
-        <img
-            [src]="planet.imageUrl"
-            alt="{{ planet.planetName }}"
-            class="planet-avatar"
+        <app-planet-avatar
+            [imageUrl]="planet.imageUrl"
+            [planetName]="planet.planetName"
         />
-        } @else {
-        <div class="planet-avatar"></div>
-        }
 
         <div class="planet-info">
             <h3>{{ planet.planetName }}</h3>

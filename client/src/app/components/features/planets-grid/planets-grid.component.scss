@@ -15,8 +15,7 @@
     }
 }
 
-.planet-avatar {
-    @include mixins.planets-avatar(80px);
+app-planet-avatar {
     margin-bottom: var(--spacing-sm);
 }
 

@@ -4,15 +4,11 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
         <td mat-cell *matCellDef="let planet">
             <div class="planet-cell">
-                @if (planet.imageUrl) {
-                <img
-                    [src]="planet.imageUrl"
-                    alt="{{ planet.planetName }}"
-                    class="planet-avatar"
+                <app-planet-avatar
+                    [imageUrl]="planet.imageUrl"
+                    [planetName]="planet.planetName"
+                    [avatarSize]="40"
                 />
-                } @else {
-                <div class="planet-avatar"></div>
-                }
 
                 <div class="planet-info">
                     <div class="planet-name">{{ planet.planetName }}</div>

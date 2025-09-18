@@ -1,15 +1,11 @@
 @let planet = planet$(); @if (planet) {
 <div class="planets-grid">
     <div class="app-card planet-card-large">
-        @if (planet.imageUrl) {
-        <img
-            [src]="planet.imageUrl"
-            alt="{{ planet.planetName }}"
-            class="planet-avatar"
+        <app-planet-avatar
+            [imageUrl]="planet.imageUrl"
+            [planetName]="planet.planetName"
+            [avatarSize]="180"
         />
-        } @else {
-        <div class="planet-avatar"></div>
-        }
 
         <div class="planet-description">
             <h3>{{ planet.planetName }}</h3>

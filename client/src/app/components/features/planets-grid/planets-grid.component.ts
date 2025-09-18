@@ -5,11 +5,12 @@ import {
     output,
 } from '@angular/core';
 import { Planet } from '../../../models/planet.interface';
+import { PlanetAvatarComponent } from '../../shared/planet-avatar/planet-avatar.component';
 
 @Component({
     selector: 'app-planets-grid',
     standalone: true,
-    imports: [],
+    imports: [PlanetAvatarComponent],
     templateUrl: './planets-grid.component.html',
     styleUrl: './planets-grid.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,

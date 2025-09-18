@@ -27,6 +27,7 @@ import {
 } from '../../../models/dialog-data.interface';
 import { take } from 'rxjs';
 import { ConfirmationComponent } from '../confirmation/confirmation.component';
+import { PlanetAvatarComponent } from '../planet-avatar/planet-avatar.component';
 
 @Component({
     selector: 'app-create-planet',
@@ -38,6 +39,7 @@ import { ConfirmationComponent } from '../confirmation/confirmation.component';
         MatInput,
         CdkTextareaAutosize,
         ReactiveFormsModule,
+        PlanetAvatarComponent,
     ],
     templateUrl: './create-planet.component.html',
     styleUrl: './create-planet.component.scss',

@@ -9,11 +9,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { take } from 'rxjs';
 import { PlanetsService } from '../../../services/planets.service';
 import { PlanetsStateService } from '../../../services/planets-state.service';
+import { PlanetAvatarComponent } from '../../shared/planet-avatar/planet-avatar.component';
 
 @Component({
     selector: 'app-planet-details',
     standalone: true,
-    imports: [],
+    imports: [PlanetAvatarComponent],
     styleUrl: './planet-details.component.scss',
     templateUrl: './planet-details.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,

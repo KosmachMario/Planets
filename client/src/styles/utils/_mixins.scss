@@ -5,13 +5,6 @@
     line-height: $size;
 }
 
-@mixin planets-avatar($size) {
-    height: $size;
-    width: $size;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
 @mixin from-desktop-down {
     @media (max-width: 1200px) {
         @content;
